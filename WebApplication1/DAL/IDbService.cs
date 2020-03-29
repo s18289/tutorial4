@@ -9,5 +9,6 @@ namespace WebApplication1.DAL
     public interface IDbService
     {
         public IEnumerable<Student> GetStudents();
+        public List<string> GetStudentsEntries(int id);
     }
 }

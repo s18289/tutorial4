@@ -36,5 +36,28 @@ namespace WebApplication1.DAL
             }
             return students;
         }
+
+        public List<string> GetStudentsEntries(int id)
+        {
+            List<string> entries = new List<string>();
+            using (var con = new SqlConnection("Data Source=db-mssql;Initial Catalog=s18289;Integrated Security=True"))
+            using (var com = new SqlCommand())
+            {
+                com.Connection = con;
+                com.CommandText = "SELECT e.semester " +
+                                  "FROM enrollment e " +
+                                  "WHERE e.idenrollment = (SELECT s.idenrollment FROM student s " +
+                                  $"WHERE s.indexnumber=@id)";
+                com.Parameters.AddWithValue("id", id);
+                con.Open();
+                var dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    string tmp = dr["Semester"].ToString();
+                    entries.Add(tmp);
+                }
+            }
+            return entries;
+        }
     }
 }

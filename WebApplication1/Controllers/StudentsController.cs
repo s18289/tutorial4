@@ -13,19 +13,25 @@ namespace WebApplication1.Controllers
     public class StudentsController : ControllerBase
     {
 
-        private IDbService _dbService; 
+        private IDbService _dbService;
 
-       public StudentsController(IDbService dbService)
+        public StudentsController(IDbService dbService)
         {
             _dbService = dbService;
         }
 
         [HttpGet]
-        public IActionResult getStudents(string orderBy="firstName")
+        public IActionResult getStudents()
         {
             return Ok(_dbService.GetStudents());
         }
-        
+
+        [HttpGet("entries/{id}")]
+        public IActionResult getStudentsEntries(int id)
+        {
+            return Ok(_dbService.GetStudentsEntries(id));
+        }
+
         [HttpGet("{id}")]
         public IActionResult getStudent(int id) 
         {
