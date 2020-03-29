@@ -49,7 +49,6 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult CreateStudent(Student student)
         {
-            //student.IndexNumber = $"s{new Random().Next(1, 20000)}";
             return Ok(student);
         }
 
@@ -66,10 +65,3 @@ namespace WebApplication1.Controllers
         }
     }
 }
-
-
-
-//int age = 10;
-//var s1 = "Ala is " + age + " years old";
-//var s2 = string.Format("Ala is {0} years old", age);
-//var s3 = $"Ala is {age} years old";
